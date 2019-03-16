@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+    h4 {
+    word-wrap: break-word;
+}
+</style>
+
+    <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                <a class="navbar-brand" href="#home"><b>Fibonacci</b></a>
+            </div>
+        </div>
+    </nav>
+
+<!--navbar completed-->
+
+    <br />
+    <br />
+    <br />
+    <br />
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Provide value of N</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">
+                                Input N :
+                            </label>
+                            <div class="col-sm-10">
+                                <input id="id_number" maxlength="30" name="value" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% if results %}
+                    <h3>N<sup>th</sup> number is:</h3>
+                        <h4>{{ results.result|wordwrap:50|linebreaksbr }}</h4>
+
+
+                        <h3>Time required in seconds:</h3>
+                        <h4>{{ results.end_time }}</h4>
+
+                    {% else %}
+                        <h3>None</h3>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
