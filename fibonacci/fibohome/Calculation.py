@@ -6,9 +6,11 @@ def fibonacci(val):
         return 1
 
     else:
-        fib=[0,1]
-        for i in range(2, val+1):
-            fib.append(fib[i - 1] + fib[i - 2])
+        fib = {}
+        fib = {0: 0, 1: 1}
+        for i in range(2, val + 1):
+            if i not in fib:
+                fib[i] = (fib[i - 1] + fib[i - 2])
         return fib[val]
 
 class CalcClass(object):
